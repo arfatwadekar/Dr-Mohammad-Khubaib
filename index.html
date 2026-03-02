@@ -40,7 +40,7 @@
 
         <!-- Logo -->
         <div class="logo">
-          <img src="./logo2.png" alt="Mumbra Health Care Logo" class="logo-image" style="width: 200px;"/>
+          <img src="./l.png" alt="Mumbra Health Care Logo" class="logo-image" style="width: 90px;"/>
         </div>
 
 
@@ -572,7 +572,7 @@
               need.
             </p>
 
-            <form action="#" method="POST" class="form">
+            <form id="contactForm" class="form">
               <div class="form-group">
                 <label for="contact-name">Name</label>
                 <input
@@ -638,105 +638,289 @@
       </section>
 
 
+      <!-- =========================== Add Reviews ============================ -->
+<!-- ====================== VIDEO REVIEWS SECTION ====================== -->
+<section id="video-reviews" class="video-review-section">
+  <div class="container">
+
+    <div class="section-header">
+      <h1>Patient <strong>Video Testimonials</strong></h1>
+      <p>
+        Watch real patient experiences and success stories from
+        Dr. Mohammad Khubaib's Mumbra Health Care Centre.
+      </p>
+    </div>
+
+    <div class="swiper videoReviewSwiper">
+      <div class="swiper-wrapper">
+
+        <!-- ========= VIDEO 1 ========= -->
+        <div class="swiper-slide">
+          <div class="video-card"
+            data-video="https://www.youtube.com/embed/ysz5S6PUM-U"
+            data-title="Arthritis Recovery Journey"
+            data-desc="How homoeopathic treatment helped relieve chronic joint pain.">
+
+            <div class="thumbnail">
+              <img src="https://img.youtube.com/vi/ysz5S6PUM-U/maxresdefault.jpg" alt="Arthritis Review">
+              <div class="play-icon">
+                <i class="ri-play-fill"></i>
+              </div>
+            </div>
+
+            <div class="video-info">
+              <h3>Arthritis Recovery Journey</h3>
+              <p>Homoeopathic treatment for chronic joint pain relief.</p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ========= VIDEO 2 ========= -->
+        <div class="swiper-slide">
+          <div class="video-card"
+            data-video="https://www.youtube.com/embed/jNQXAC9IVRw"
+            data-title="Hijama Therapy Experience"
+            data-desc="Real experience of detox and improved circulation.">
+
+            <div class="thumbnail">
+              <img src="https://img.youtube.com/vi/jNQXAC9IVRw/maxresdefault.jpg" alt="Hijama Review">
+              <div class="play-icon">
+                <i class="ri-play-fill"></i>
+              </div>
+            </div>
+
+            <div class="video-info">
+              <h3>Hijama Therapy Experience</h3>
+              <p>Benefits of cupping therapy for detoxification.</p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ========= VIDEO 3 ========= -->
+        <div class="swiper-slide">
+          <div class="video-card"
+            data-video="https://www.youtube.com/embed/tgbNymZ7vqY"
+            data-title="Stress & Anxiety Counseling"
+            data-desc="Professional counseling improved mental health.">
+
+            <div class="thumbnail">
+              <img src="https://img.youtube.com/vi/tgbNymZ7vqY/maxresdefault.jpg" alt="Counseling Review">
+              <div class="play-icon">
+                <i class="ri-play-fill"></i>
+              </div>
+            </div>
+
+            <div class="video-info">
+              <h3>Stress & Anxiety Counseling</h3>
+              <p>Professional support for mental wellness.</p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ========= VIDEO 4 ========= -->
+        <div class="swiper-slide">
+          <div class="video-card"
+            data-video="https://www.youtube.com/embed/aqz-KE-bpKQ"
+            data-title="Weight Loss Success Story"
+            data-desc="Dietician helped patient lose weight safely.">
+
+            <div class="thumbnail">
+              <img src="https://img.youtube.com/vi/aqz-KE-bpKQ/maxresdefault.jpg" alt="Weight Loss Review">
+              <div class="play-icon">
+                <i class="ri-play-fill"></i>
+              </div>
+            </div>
+
+            <div class="video-info">
+              <h3>Weight Loss Success Story</h3>
+              <p>Personalized diet plan transformation.</p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ========= VIDEO 5 ========= -->
+        <div class="swiper-slide">
+          <div class="video-card"
+            data-video="https://www.youtube.com/embed/ScMzIvxBSi4"
+            data-title="De-Addiction Program Testimonial"
+            data-desc="Journey of quitting smoking successfully.">
+
+            <div class="thumbnail">
+              <img src="https://img.youtube.com/vi/ScMzIvxBSi4/maxresdefault.jpg" alt="De-Addiction Review">
+              <div class="play-icon">
+                <i class="ri-play-fill"></i>
+              </div>
+            </div>
+
+            <div class="video-info">
+              <h3>De-Addiction Success Story</h3>
+              <p>Supportive counseling helped quit smoking.</p>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= VIDEO MODAL ================= -->
+<div class="video-modal" id="videoModal">
+  <div class="video-overlay"></div>
+
+  <div class="video-modal-content">
+    <button class="video-close">
+      <i class="ri-close-line"></i>
+    </button>
+
+    <iframe
+      id="videoFrame"
+      width="100%"
+      height="400"
+      src=""
+      frameborder="0"
+      allowfullscreen>
+    </iframe>
+
+    <h2 id="videoTitle"></h2>
+    <p id="videoDescription"></p>
+  </div>
+</div>
+
 <!-- ====================== BLOG SECTION ====================== -->
 <section id="blog" class="blog-section">
   <div class="section-header">
-    <h1>Blogs</h1>
+    <h1>Health & Wellness Blogs</h1>
     <p>
-      We share health tips, medical insights, and wellness guidance to help you
-      and your family live healthier lives.
+      Discover expert insights on homoeopathy, natural healing, mental wellness,
+      and holistic healthcare from Dr. Mohammad Khubaib.
     </p>
   </div>
 
-  <!-- Blog Slider -->
   <div class="swiper blogSwiper">
     <div class="swiper-wrapper">
 
-      <!-- Blog Card 1 -->
+      <!-- Blog 1 -->
       <div class="swiper-slide">
         <article class="blog-card">
-          <img src="./download.jpeg" alt="Pulmonary operation technology" />
+          <img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?q=80&w=1200&auto=format&fit=crop"
+               alt="Homeopathy medicine globules" />
 
           <div class="meta">
-            <span>👤 Jeffrey Davis</span>
-            <span>📅 24 Jan 2023</span>
+            <span>👤 Dr. Mohammad Khubaib</span>
+            <span>📅 10 Feb 2025</span>
           </div>
 
           <h3 class="blog-title">
-            New Technology Made for Pulmonary Operation
+            How Homoeopathy Treats Chronic Diseases Naturally
           </h3>
 
           <p class="blog-desc">
-            Modern medical technology is transforming pulmonary treatments and
-            improving patient outcomes.
+            Learn how homoeopathic remedies help manage chronic conditions like
+            arthritis, asthma, thyroid disorders, and skin problems safely.
           </p>
 
           <a href="#" class="details-link">View Details →</a>
         </article>
       </div>
 
-      <!-- Blog Card 2 -->
+      <!-- Blog 2 -->
       <div class="swiper-slide">
         <article class="blog-card">
-          <img src="./download.jpeg" alt="Doctor talking to patient" />
+          <img src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?q=80&w=1200&auto=format&fit=crop"
+               alt="Cupping therapy Hijama treatment" />
 
           <div class="meta">
-            <span>👤 Allen Harttier</span>
-            <span>📅 22 Jan 2023</span>
+            <span>👤 Dr. Mohammad Khubaib</span>
+            <span>📅 05 Feb 2025</span>
           </div>
 
           <h3 class="blog-title">
-            To Stay Healthy, Follow Your Doctor’s Advice
+            Benefits of Hijama (Cupping Therapy) for Detoxification
           </h3>
 
           <p class="blog-desc">
-            Regular checkups and professional guidance are key to maintaining
-            good health.
+            Discover how traditional cupping therapy removes toxins,
+            improves circulation, and boosts immunity.
           </p>
 
           <a href="#" class="details-link">View Details →</a>
         </article>
       </div>
 
-      <!-- Blog Card 3 -->
+      <!-- Blog 3 -->
       <div class="swiper-slide">
         <article class="blog-card">
-          <img src="./download.jpeg" alt="Healthy bones guide" />
+          <img src="https://images.unsplash.com/photo-1573497491208-6b1acb260507?q=80&w=1200&auto=format&fit=crop"
+               alt="Mental health counseling session" />
 
           <div class="meta">
-            <span>👤 Diana Ayers</span>
-            <span>📅 20 Jan 2023</span>
+            <span>👤 Dr. Mohammad Khubaib</span>
+            <span>📅 01 Feb 2025</span>
           </div>
 
           <h3 class="blog-title">
-            A Complete Guide to Maintaining Healthy Bones
+            Managing Stress & Anxiety Through Counseling
           </h3>
 
           <p class="blog-desc">
-            Learn how diet, exercise, and lifestyle choices impact bone health.
+            Practical counseling techniques that help patients overcome
+            stress, anxiety, and emotional challenges.
           </p>
 
           <a href="#" class="details-link">View Details →</a>
         </article>
       </div>
 
-      <!-- Blog Card 4 -->
+      <!-- Blog 4 -->
       <div class="swiper-slide">
         <article class="blog-card">
-          <img src="./download.jpeg" alt="Mental wellness care" />
+          <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=1200&auto=format&fit=crop"
+               alt="Healthy diet and nutrition" />
 
           <div class="meta">
-            <span>👤 Sarah Collins</span>
-            <span>📅 18 Jan 2023</span>
+            <span>👤 Dr. Mohammad Khubaib</span>
+            <span>📅 28 Jan 2025</span>
           </div>
 
           <h3 class="blog-title">
-            Mental Wellness: Taking Care of Your Mind
+            Importance of Diet & Nutrition in Holistic Healing
           </h3>
 
           <p class="blog-desc">
-            Mental health is just as important as physical health. Learn simple
-            ways to stay balanced.
+            A balanced diet plays a vital role in recovery and prevention.
+            Learn how nutrition supports long-term wellness.
+          </p>
+
+          <a href="#" class="details-link">View Details →</a>
+        </article>
+      </div>
+
+      <!-- Blog 5 -->
+      <div class="swiper-slide">
+        <article class="blog-card">
+          <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=1200&auto=format&fit=crop"
+               alt="Physiotherapy treatment session" />
+
+          <div class="meta">
+            <span>👤 Dr. Mohammad Khubaib</span>
+            <span>📅 20 Jan 2025</span>
+          </div>
+
+          <h3 class="blog-title">
+            Physiotherapy for Pain Relief & Rehabilitation
+          </h3>
+
+          <p class="blog-desc">
+            Professional physiotherapy sessions help treat back pain,
+            joint stiffness, injuries, and mobility issues.
           </p>
 
           <a href="#" class="details-link">View Details →</a>
@@ -745,7 +929,6 @@
 
     </div>
 
-    <!-- Pagination -->
     <div class="swiper-pagination"></div>
   </div>
 </section>
@@ -846,6 +1029,52 @@ This section can contain full blog content. You can replace this text later with
       </div>
     </div>
 
+
+    <!-- ================= ANNOUNCEMENT MODAL ================= -->
+<div class="announcement-modal" id="announcementModal">
+  <div class="announcement-overlay"></div>
+
+  <div class="announcement-content">
+    <button class="announcement-close">
+      <i class="ri-close-line"></i>
+    </button>
+
+    <h2>📢 Important Announcement</h2>
+
+    <div class="announcement-list" id="announcementList">
+      <!-- Dynamic announcements yaha load honge -->
+    </div>
+  </div>
+</div>
+
+
+<!-- PDF DOWNLOAD FLOAT BUTTON -->
+<a href="assets/clinic-announcement.pdf" 
+   download 
+   class="pdf-float-btn"
+   title="Download Announcement PDF">
+   <i class="ri-file-pdf-line"></i>
+</a>
+
+<!-- ================= FLOATING ANNOUNCEMENT ICON ================= -->
+<div class="announcement-float" id="announcementFloat">
+  <i class="ri-megaphone-line"></i>
+</div>
+
+<!-- ================= CHAT STYLE PANEL ================= -->
+<div class="announcement-chat" id="announcementChat">
+  <div class="chat-header">
+    <span>Clinic Announcements</span>
+    <button id="chatClose">
+      <i class="ri-close-line"></i>
+    </button>
+  </div>
+
+  <div class="chat-body" id="chatBody">
+    <!-- Same announcements here -->
+  </div>
+</div>
+
     <!-- =========================================================
          SCRIPTS
     ========================================================= -->
@@ -887,4 +1116,7 @@ This section can contain full blog content. You can replace this text later with
       });
     </script>
   </body>
-</html
+
+  <div id="toast" class="toast"></div>
+
+</html>

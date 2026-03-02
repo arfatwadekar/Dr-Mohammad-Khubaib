@@ -1345,3 +1345,480 @@ h1 {
     font-size: 15px;
   }
 }
+
+
+/* ============================= Add Reviews =============================   */
+/* =========================================
+   PATIENT VIDEO TESTIMONIALS SECTION
+========================================= */
+
+.video-review-section {
+  padding: 70px 20px;
+  background: #f5f6f8;
+}
+
+.video-review-section .container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.video-review-section .section-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.video-review-section .section-header h1 {
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.video-review-section .section-header h1 strong {
+  color: #6c63ff;
+}
+
+.video-review-section .section-header p {
+  color: #666;
+  font-size: 15px;
+  max-width: 600px;
+  margin: 10px auto 0;
+}
+
+.video-review-section .swiper-slide {
+  display: flex;
+  height: auto;
+}
+
+/* =========================================
+   VIDEO SWIPER
+========================================= */
+
+.videoReviewSwiper {
+  padding-bottom: 40px;
+}
+
+.videoReviewSwiper .swiper-pagination {
+  position: relative !important;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.videoReviewSwiper .swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  background: #ccc;
+  opacity: 1;
+}
+
+.videoReviewSwiper .swiper-pagination-bullet-active {
+  background: #6c63ff;
+}
+
+/* =========================================
+   VIDEO CARD
+========================================= */
+
+.video-card {
+  background: #ffffff;
+  border-radius: 14px;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 360px;
+
+  border: 1px solid #e5e7eb;
+}
+
+.video-card .thumbnail {
+  height: 200px;
+  position: relative;
+  background: #ddd;
+}
+
+.video-card .thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.video-card .play-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background: rgba(108, 99, 255, 0.9);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 26px;
+  color: #fff;
+}
+
+.video-card .video-info {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.video-card .video-info h3 {
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 8px;
+
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.video-card .video-info p {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.5;
+
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+/* =========================================
+   VIDEO MODAL
+========================================= */
+
+.video-modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.video-modal.active {
+  display: flex;
+}
+
+.video-modal .video-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.video-modal .video-modal-content {
+  position: relative;
+  width: 90%;
+  max-width: 800px;
+  background: #fff;
+  border-radius: 14px;
+  padding: 20px;
+  z-index: 2;
+}
+
+.video-modal .video-modal-content iframe {
+  width: 100%;
+  height: 400px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.video-modal .video-modal-content h2 {
+  font-size: 20px;
+  margin-bottom: 6px;
+}
+
+.video-modal .video-modal-content p {
+  font-size: 14px;
+  color: #666;
+}
+
+.video-modal .video-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 768px) {
+  .video-card {
+    min-height: 320px;
+  }
+
+  .video-card .thumbnail {
+    height: 170px;
+  }
+
+  .video-modal .video-modal-content iframe {
+    height: 250px;
+  }
+}
+
+
+/* ================= TOAST ================= */
+
+.toast {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: #111;
+  color: #fff;
+  padding: 14px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+  z-index: 9999;
+  min-width: 250px;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.toast.success {
+  background: #22c55e;
+}
+
+.toast.error {
+  background: #ef4444;
+}
+
+.toast.warning {
+  background: #f59e0b;
+}
+
+
+/* ====================== Annoucement ====================== */
+/* ================= ANNOUNCEMENT MODAL ================= */
+
+.announcement-modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.announcement-modal.active {
+  display: flex;
+}
+
+.announcement-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(4px);
+}
+
+.announcement-content {
+  position: relative;
+  background: var(--white);
+  width: 90%;
+  max-width: 520px;
+  border-radius: var(--radius);
+  padding: 30px;
+  z-index: 2;
+  border-top: 4px solid var(--primary-blue);
+  box-shadow: var(--shadow-md);
+  animation: fadeIn 0.3s ease;
+}
+
+.announcement-content h2 {
+  margin-bottom: 20px;
+  color: var(--primary-blue);
+  font-weight: 600;
+}
+
+.announcement-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.announcement-close:hover {
+  color: var(--primary-blue);
+}
+
+/* ================= ANNOUNCEMENT ITEMS ================= */
+
+.announcement-item {
+  background: var(--pale-blue);
+  padding: 12px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: var(--primary-text);
+}
+
+/* ================= FLOATING ANNOUNCEMENT BUTTON ================= */
+
+.announcement-float {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  width: 62px;
+  height: 62px;
+  background: var(--primary-blue);
+  color: var(--white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  transition: var(--transition);
+  z-index: 9998;
+}
+
+.announcement-float:hover {
+  background: var(--light-blue);
+  transform: scale(1.08);
+}
+
+/* ================= CHAT PANEL ================= */
+
+.announcement-chat {
+  position: fixed;
+  bottom: 100px;
+  right: 25px;
+  width: 340px;
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 9999;
+  animation: slideUp 0.3s ease;
+}
+
+.announcement-chat.active {
+  display: flex;
+}
+
+.chat-header {
+  background: var(--primary-blue);
+  color: var(--white);
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 500;
+}
+
+.chat-header button {
+  background: none;
+  border: none;
+  color: var(--white);
+  font-size: 18px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.chat-header button:hover {
+  opacity: 0.8;
+}
+
+.chat-body {
+  padding: 15px;
+  max-height: 300px;
+  overflow-y: auto;
+  background: var(--sky-blue);
+}
+
+.chat-body .announcement-item {
+  background: var(--white);
+  padding: 10px 12px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  font-size: 13px;
+  box-shadow: var(--shadow-sm);
+}
+
+/* ================= PDF FLOAT BUTTON ================= */
+
+.pdf-float-btn {
+  position: fixed;
+  bottom: 99px;
+  right: 25px;
+  width: 62px;
+  height: 62px;
+  background: #ef4444;
+  color: var(--white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  transition: var(--transition);
+  z-index: 9998;
+  text-decoration: none;
+}
+
+.pdf-float-btn:hover {
+  background: #dc2626;
+  transform: scale(1.08);
+}
+
+/* ================= ANIMATIONS ================= */
+
+@keyframes fadeIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(25px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 480px) {
+  .announcement-chat {
+    width: 92%;
+    right: 4%;
+  }
+
+  .announcement-content {
+    padding: 20px;
+  }
+}
