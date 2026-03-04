@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-
   initMobileNav();
 
   initBlogSwiper();
@@ -8,22 +7,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
   initVideoModal();
 
+   initBlogModal();   
   initAnnouncements();
-
 });
-
 
 /* =========================================================
    MOBILE NAVIGATION
 ========================================================= */
 
 function initMobileNav() {
-
   const hamburger = document.querySelector(".hamburger");
   const navLinks = document.querySelector(".nav-links");
 
   function closeMenu() {
-
     navLinks?.classList.remove("active");
 
     const icon = hamburger?.querySelector("i");
@@ -35,7 +31,6 @@ function initMobileNav() {
   }
 
   hamburger?.addEventListener("click", () => {
-
     const isOpen = navLinks?.classList.toggle("active");
 
     const icon = hamburger.querySelector("i");
@@ -44,15 +39,13 @@ function initMobileNav() {
       icon.classList.toggle("ri-close-line", isOpen);
       icon.classList.toggle("ri-menu-3-line", !isOpen);
     }
-
   });
 
-  navLinks?.querySelectorAll("a").forEach(link => {
+  navLinks?.querySelectorAll("a").forEach((link) => {
     link.addEventListener("click", closeMenu);
   });
 
   document.addEventListener("click", (e) => {
-
     if (
       navLinks?.classList.contains("active") &&
       !navLinks.contains(e.target) &&
@@ -60,23 +53,17 @@ function initMobileNav() {
     ) {
       closeMenu();
     }
-
   });
-
 }
-
-
 
 /* =========================================================
    BLOG SWIPER
 ========================================================= */
 
 function initBlogSwiper() {
-
   if (!document.querySelector(".blogSwiper")) return;
 
   new Swiper(".blogSwiper", {
-
     slidesPerView: 3,
     spaceBetween: 10,
     loop: true,
@@ -87,29 +74,21 @@ function initBlogSwiper() {
     },
 
     breakpoints: {
-
       0: { slidesPerView: 1 },
       600: { slidesPerView: 1 },
       900: { slidesPerView: 2 },
-      1200: { slidesPerView: 3 }
-
-    }
-
+      1200: { slidesPerView: 3 },
+    },
   });
-
 }
-
-
 
 /* =========================================================
    VIDEO REVIEWS API
 ========================================================= */
 async function loadVideoReviews() {
-
   try {
-
     const response = await fetch(
-      "http://localhost:8080/api/Blog?pageNumber=1&pageSize=10"
+      "http://localhost:8080/api/Blog?pageNumber=1&pageSize=10",
     );
 
     const data = await response.json();
@@ -127,10 +106,9 @@ async function loadVideoReviews() {
     wrapper.innerHTML = "";
 
     blogs.forEach((blog, index) => {
-
       console.log(`Video ${index + 1}`, {
         title: blog.title,
-        youtube: blog.youTubeUrl
+        youtube: blog.youTubeUrl,
       });
 
       if (!blog.youTubeUrl) return;
@@ -162,19 +140,14 @@ async function loadVideoReviews() {
       `;
 
       wrapper.appendChild(slide);
-
     });
 
     console.log("Slides added to DOM:", wrapper.children.length);
 
     initVideoSwiper();
-
   } catch (error) {
-
     console.error("Video API Error:", error);
-
   }
-
 }
 
 /* =========================================================
@@ -182,28 +155,21 @@ async function loadVideoReviews() {
 ========================================================= */
 
 function extractYoutubeId(url) {
-
-  const regex =
-    /(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&]+)/;
+  const regex = /(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&]+)/;
 
   const match = url.match(regex);
 
   return match ? match[1] : "";
-
 }
-
-
 
 /* =========================================================
    VIDEO SWIPER
 ========================================================= */
 
 function initVideoSwiper() {
-
   if (!document.querySelector(".videoReviewSwiper")) return;
 
   new Swiper(".videoReviewSwiper", {
-
     slidesPerView: 1,
     spaceBetween: 20,
     loop: true,
@@ -219,24 +185,17 @@ function initVideoSwiper() {
     },
 
     breakpoints: {
-
       768: { slidesPerView: 2 },
-      1024: { slidesPerView: 3 }
-
-    }
-
+      1024: { slidesPerView: 3 },
+    },
   });
-
 }
-
-
 
 /* =========================================================
    VIDEO MODAL
 ========================================================= */
 
 function initVideoModal() {
-
   const modal = document.getElementById("videoModal");
   if (!modal) return;
 
@@ -248,7 +207,6 @@ function initVideoModal() {
   const overlay = modal.querySelector(".video-overlay");
 
   const openModal = (card) => {
-
     frame.src = (card.dataset.video || "") + "?autoplay=1";
 
     title.textContent = card.dataset.title || "";
@@ -257,25 +215,20 @@ function initVideoModal() {
     modal.classList.add("active");
 
     document.body.style.overflow = "hidden";
-
   };
 
   const closeModal = () => {
-
     modal.classList.remove("active");
 
     frame.src = "";
 
     document.body.style.overflow = "auto";
-
   };
 
   document.addEventListener("click", (e) => {
-
     const card = e.target.closest(".video-card");
 
     if (card) openModal(card);
-
   });
 
   closeBtn?.addEventListener("click", closeModal);
@@ -284,23 +237,17 @@ function initVideoModal() {
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") closeModal();
   });
-
 }
-
-
 
 /* =========================================================
    ANNOUNCEMENTS
 ========================================================= */
 
 function initAnnouncements() {
-
   const announcements = [
-
     "Clinic will remain closed on Sunday.",
     "Free Health Checkup Camp on 10th December.",
     "Special Discount on Physiotherapy this week.",
-
   ];
 
   const modal = document.querySelector("#announcementModal");
@@ -317,9 +264,7 @@ function initAnnouncements() {
   if (!modal) return;
 
   function renderAnnouncements() {
-
-    announcements.forEach(text => {
-
+    announcements.forEach((text) => {
       const item = document.createElement("div");
 
       item.className = "announcement-item";
@@ -328,33 +273,25 @@ function initAnnouncements() {
       listContainer?.appendChild(item);
 
       chatBody?.appendChild(item.cloneNode(true));
-
     });
-
   }
 
   function openModal() {
-
     modal.classList.add("active");
 
     document.body.style.overflow = "hidden";
-
   }
 
   function closeModal() {
-
     modal.classList.remove("active");
 
     document.body.style.overflow = "auto";
-
   }
 
   if (announcements.length > 0) {
-
     renderAnnouncements();
 
     openModal();
-
   }
 
   closeBtn?.addEventListener("click", closeModal);
@@ -368,6 +305,77 @@ function initAnnouncements() {
   chatClose?.addEventListener("click", () => {
     chatPanel?.classList.remove("active");
   });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeModal();
+  });
+}
+
+
+/* =========================================================
+   BLOG MODAL
+========================================================= */
+
+function initBlogModal() {
+
+  const modal = document.getElementById("blogModal");
+
+  if (!modal) return;
+
+  const modalImage = document.getElementById("modalImage");
+  const modalAuthor = document.getElementById("modalAuthor");
+  const modalDate = document.getElementById("modalDate");
+  const modalTitle = document.getElementById("modalTitle");
+  const modalDesc = document.getElementById("modalDescription");
+
+  const closeBtn = modal.querySelector(".modal-close");
+  const overlay = modal.querySelector(".modal-overlay");
+
+  const openModal = (card) => {
+
+    const img = card.querySelector("img").src;
+    const author = card.querySelector(".meta span:nth-child(1)").textContent;
+    const date = card.querySelector(".meta span:nth-child(2)").textContent;
+    const title = card.querySelector(".blog-title").textContent;
+    const desc = card.querySelector(".blog-desc").textContent;
+
+    modalImage.src = img;
+    modalAuthor.textContent = author;
+    modalDate.textContent = date;
+    modalTitle.textContent = title;
+    modalDesc.textContent = desc;
+
+    modal.classList.add("active");
+
+    document.body.style.overflow = "hidden";
+
+  };
+
+  const closeModal = () => {
+
+    modal.classList.remove("active");
+
+    document.body.style.overflow = "auto";
+
+  };
+
+  document.addEventListener("click", (e) => {
+
+    const link = e.target.closest(".details-link");
+
+    if (!link) return;
+
+    e.preventDefault();
+
+    const card = link.closest(".blog-card");
+
+    openModal(card);
+
+  });
+
+  closeBtn?.addEventListener("click", closeModal);
+
+  overlay?.addEventListener("click", closeModal);
 
   document.addEventListener("keydown", (e) => {
 
