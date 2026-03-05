@@ -1604,6 +1604,25 @@ h4 {
   -webkit-box-orient: vertical;
 }
 
+.announcement-item h4{
+  font-size: var(--fs-md);
+  margin-bottom:4px;
+  font-weight:600;
+}
+
+.announcement-item p{
+  font-size: var(--fs-sm);
+  color: var(--secondary-text);
+  margin:0;
+}
+
+.announcement-date{
+  font-size: var(--fs-xs);
+  margin-top:6px;
+  display:block;
+  color:#64748b;
+}
+
 /* Video Modal */
 .video-modal {
   position: fixed;
@@ -1767,15 +1786,31 @@ h4 {
 .announcement-content {
   position: relative;
   background: var(--white);
-  width: 90%;
-  max-width: 520px;
+  width: 92%;
+     max-width: 720px;
+  max-height: 80vh;
+  overflow-y: auto;
+
   border-radius: var(--radius);
-  padding: 32px;
-  z-index: 2;
-  border-top: 4px solid var(--primary-blue);
-  box-shadow: var(--shadow-md);
-  animation: fadeIn 0.3s ease;
-  font-family: "Inter", sans-serif;
+  padding: 28px;
+
+  scrollbar-width: none;      /* Firefox */
+  -ms-overflow-style: none;   /* IE / Edge */
+}
+
+.announcement-item {
+  background: var(--pale-blue);
+  padding: 14px 16px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  color: var(--primary-text);
+  line-height: 1.6;
+
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .announcement-content h2 {
@@ -1788,8 +1823,8 @@ h4 {
 
 .announcement-close {
   position: absolute;
-  top: 16px;
-  right: 16px;
+     top: 19px;
+    right: 22px;
   background: none;
   border: none;
   font-size: 22px;
@@ -1969,9 +2004,8 @@ h4 {
 
   position: absolute;
 
-  top: -14px;
-  right: -14px;
-
+     top: 19px;
+    right: 22px;
   width: 36px;
   height: 36px;
 
@@ -2012,4 +2046,8 @@ h4 {
 
 }
 
+}
+
+.announcement-content::-webkit-scrollbar{
+  display: none;              /* Chrome / Safari */
 }

@@ -240,63 +240,112 @@ function initVideoModal() {
 }
 
 /* =========================================================
-   ANNOUNCEMENTS
+   ANNOUNCEMENTS  — Dynamic via API
 ========================================================= */
 
-function initAnnouncements() {
-  const announcements = [
-    "Clinic will remain closed on Sunday.",
-    "Free Health Checkup Camp on 10th December.",
-    "Special Discount on Physiotherapy this week.",
-  ];
-
-  const modal = document.querySelector("#announcementModal");
-  const overlay = document.querySelector(".announcement-overlay");
-  const closeBtn = document.querySelector(".announcement-close");
-
-  const floatBtn = document.querySelector("#announcementFloat");
-  const chatPanel = document.querySelector("#announcementChat");
-  const chatClose = document.querySelector("#chatClose");
-
+async function initAnnouncements() {
+  const modal         = document.querySelector("#announcementModal");
+  const overlay       = document.querySelector(".announcement-overlay");
+  const closeBtn      = document.querySelector(".announcement-close");
+  const floatBtn      = document.querySelector("#announcementFloat");
+  const chatPanel     = document.querySelector("#announcementChat");
+  const chatClose     = document.querySelector("#chatClose");
   const listContainer = document.querySelector("#announcementList");
-  const chatBody = document.querySelector("#chatBody");
+  const chatBody      = document.querySelector("#chatBody");
 
   if (!modal) return;
 
-  function renderAnnouncements() {
-    announcements.forEach((text) => {
-      const item = document.createElement("div");
+  /* ---------- helpers ---------- */
 
-      item.className = "announcement-item";
-      item.textContent = text;
-
-      listContainer?.appendChild(item);
-
-      chatBody?.appendChild(item.cloneNode(true));
+  function formatDate(dateStr) {
+    if (!dateStr) return "";
+    const d = new Date(dateStr);
+    return d.toLocaleDateString("en-IN", {
+      day: "numeric",
+      month: "short",
+      year: "numeric",
     });
+  }
+
+  function renderItem(ann) {
+    /* ---- modal list item ---- */
+    const item = document.createElement("div");
+    item.className = "announcement-item";
+
+    item.innerHTML = `
+      <div class="ann-text">${ann.title || ann.message || ann.description || ""}</div>
+      ${ann.description && ann.title ? `<div class="ann-desc">${ann.description}</div>` : ""}
+      ${ann.startDate ? `<div class="ann-date" style="margin-top:10px">📅 ${formatDate(ann.startDate)}</div>` : ""}
+    `;
+
+    listContainer?.appendChild(item);
+
+    /* ---- chat panel clone ---- */
+    const chatItem = document.createElement("div");
+    chatItem.className = "announcement-item";
+    chatItem.innerHTML = item.innerHTML;
+    chatBody?.appendChild(chatItem);
   }
 
   function openModal() {
     modal.classList.add("active");
-
     document.body.style.overflow = "hidden";
   }
 
   function closeModal() {
     modal.classList.remove("active");
-
     document.body.style.overflow = "auto";
   }
 
-  if (announcements.length > 0) {
-    renderAnnouncements();
+  /* ---------- fetch ---------- */
 
-    openModal();
+  let announcements = [];
+
+  try {
+    const res = await fetch("http://localhost:8080/api/Announcement/active");
+
+    const text = await res.text();
+    if (!text || !text.trim()) {
+      console.warn("Announcement API: empty response — check your token or endpoint.");
+      return;
+    }
+
+    const data = JSON.parse(text);
+
+    /* support both array root and wrapped { items: [] } */
+    announcements = Array.isArray(data)
+      ? data
+      : data.items || data.data || [];
+
+    /* keep only Active announcements */
+    announcements = announcements.filter(
+      (a) => !a.status || a.status === "Active"
+    );
+
+    console.log("Announcements loaded:", announcements.length);
+  } catch (err) {
+    console.error("Announcement API Error:", err);
+
+    /* graceful fallback — show nothing rather than crash */
+    announcements = [];
   }
 
-  closeBtn?.addEventListener("click", closeModal);
+  /* ---------- render ---------- */
 
-  overlay?.addEventListener("click", closeModal);
+  if (announcements.length === 0) {
+    /* No announcements — hide float button too */
+    floatBtn?.style && (floatBtn.style.display = "none");
+    return;
+  }
+
+  announcements.forEach(renderItem);
+
+  openModal();
+
+  /* ---------- event listeners ---------- */
+
+  closeBtn?.addEventListener("click", closeModal);
+  overlay?.addEventListener("click",  closeModal);
 
   floatBtn?.addEventListener("click", () => {
     chatPanel?.classList.toggle("active");
