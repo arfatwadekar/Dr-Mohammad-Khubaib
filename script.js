@@ -474,3 +474,11 @@ function escapeAttr(str) {
   `;
   document.head.appendChild(style);
 })();
+
+// Page Loader
+const pageLoader = document.getElementById("pageLoader");
+window.addEventListener("load", () => {
+  setTimeout(() => {
+    pageLoader?.classList.add("hidden");
+  }, 500); // thoda delay for smoothness
+});

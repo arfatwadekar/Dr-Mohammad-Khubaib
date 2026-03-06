@@ -2073,3 +2073,37 @@ h4 {
 .announcement-content::-webkit-scrollbar {
   display: none; /* Chrome / Safari */
 }
+
+
+/* ==========================================================================
+   PAGE LOADER
+   ========================================================================== */
+#pageLoader {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 50%, #e0f2fe 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+#pageLoader.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.loader-logo-pop img {
+  width: 110px;
+  height: auto;
+  animation: logoPop 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  filter: drop-shadow(0 12px 32px rgba(29, 106, 229, 0.35));
+}
+
+@keyframes logoPop {
+  0%   { opacity: 0; transform: scale(0.3); }
+  70%  { opacity: 1; transform: scale(1.12); }
+  100% { opacity: 1; transform: scale(1); }
+}
