@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initBlogSwiper();
   initVideoModal();
   initBlogModal();
+    initContactForm(); // ✅ add this line
 
   // Non-critical — defer after paint
   requestIdleCallback
@@ -482,3 +483,58 @@ window.addEventListener("load", () => {
     pageLoader?.classList.add("hidden");
   }, 500); // thoda delay for smoothness
 });
+
+function showToast(message, type = "success") {
+
+  const toast = document.createElement("div");
+  toast.className = `toast ${type}`;
+  toast.innerText = message;
+
+  document.body.appendChild(toast);
+
+  setTimeout(() => {
+    toast.classList.add("show");
+  }, 100);
+
+  setTimeout(() => {
+    toast.classList.remove("show");
+    setTimeout(() => toast.remove(), 300);
+  }, 3000);
+
+}
+function initContactForm() {
+  const form = document.getElementById("contactForm");
+
+  if (!form) return;
+
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault(); // ❗ page reload stop
+
+    const payload = {
+      name: document.getElementById("contact-name").value,
+      phoneNumber: document.getElementById("contact-phone").value,
+      email: document.getElementById("contact-email").value,
+      message: document.getElementById("contact-message").value
+    };
+
+    try {
+      const res = await fetch("http://localhost:8080/api/Notification/contact-us", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (!res.ok) throw new Error("Failed");
+
+      showToast("Message sent successfully ✅", "success");
+
+      form.reset();
+
+    } catch (err) {
+      console.error("Contact API Error:", err);
+showToast("Failed to send message ❌", "error");
+    }
+  });
+}

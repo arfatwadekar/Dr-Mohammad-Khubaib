@@ -31,15 +31,13 @@
   </head>
 
   <body>
-
     <!-- ================= PAGE LOADER ================= -->
-<!-- ================= PAGE LOADER ================= -->
-<div id="pageLoader">
-  <div class="loader-logo-pop">
-    <img src="./logo_1.png" alt="Logo" />
-  </div>
-</div>
-
+    <!-- ================= PAGE LOADER ================= -->
+    <div id="pageLoader">
+      <div class="loader-logo-pop">
+        <img src="./logo_1.png" alt="Logo" />
+      </div>
+    </div>
 
     <!-- =========================================================
          HEADER / NAVIGATION
@@ -660,10 +658,10 @@
       <section class="contact-section" id="contact">
         <div class="section-header">
           <h1>Contact <strong style="color: #1d6ae5">Us</strong></h1>
-           <p>
-    We’re here to help. Contact our clinic for appointments, medical
-    consultations, or any healthcare inquiries.
-  </p>
+          <p>
+            We’re here to help. Contact our clinic for appointments, medical
+            consultations, or any healthcare inquiries.
+          </p>
         </div>
 
         <div class="contact-container">
@@ -678,34 +676,82 @@
             <form id="contactForm" class="form">
               <div class="form-group">
                 <label for="contact-name">Name</label>
+                <!-- <input
+                  type="text"
+                  id="contact-name"
+                  name="name"
+                  placeholder="Your full name"
+                  required
+                /> -->
                 <input
                   type="text"
                   id="contact-name"
                   name="name"
                   placeholder="Your full name"
                   required
+                  minlength="2"
+                  maxlength="50"
+                  pattern="^[A-Za-z\s]+$"
+                  oninput="
+                    this.value = this.value.replace(/[^A-Za-z\s]/g, '');
+                    this.setCustomValidity('');
+                  "
+                  oninvalid="
+                    this.setCustomValidity('Name should contain only letters')
+                  "
                 />
               </div>
 
               <div class="form-group">
                 <label for="contact-phone">Phone Number</label>
-                <input
+                <!-- <input
                   type="tel"
                   id="contact-phone"
                   name="phone"
                   placeholder="e.g., +91 98765 43210"
                   required
+                /> -->
+
+                <input
+                  type="tel"
+                  id="contact-phone"
+                  name="phone"
+                  placeholder="e.g., 9876543210"
+                  required
+                  pattern="[0-9]{10}"
+                  maxlength="10"
+                  inputmode="numeric"
+                  oninput="
+                    this.value = this.value.replace(/[^0-9]/g, '');
+                    this.setCustomValidity('');
+                  "
+                  oninvalid="
+                    this.setCustomValidity('Enter valid 10 digit phone number')
+                  "
                 />
               </div>
 
               <div class="form-group">
                 <label for="contact-email">Email</label>
+                <!-- <input
+                  type="email"
+                  id="contact-email"
+                  name="email"
+                  placeholder="Your email address"
+                  required
+                /> -->
+
                 <input
                   type="email"
                   id="contact-email"
                   name="email"
                   placeholder="Your email address"
                   required
+                  pattern="^[^\s@]+@[^\s@]+\.[^\s@]{2,}$"
+                  oninput="this.setCustomValidity('')"
+                  oninvalid="
+                    this.setCustomValidity('Please enter a valid email address')
+                  "
                 />
               </div>
 
@@ -979,8 +1025,7 @@
       </div>
     </main>
 
-
-      <!-- ======================  Footer Section ====================== -->
+    <!-- ======================  Footer Section ====================== -->
     <div>
       <footer class="main-footer">
         <div class="footer-container">
