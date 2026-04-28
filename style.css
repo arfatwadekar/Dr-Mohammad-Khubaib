@@ -2157,4 +2157,8 @@ h4 {
     justify-content: center;
     color: white;
   }
+  li {
+    width: 100%;
+    text-align: center;
+  }
 }
