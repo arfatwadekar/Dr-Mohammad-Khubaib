@@ -148,7 +148,7 @@ header {
   width: 100%;
   z-index: 100;
   padding: 20px 5%;
-  background: rgba(255, 255, 255, 0.82);
+  background: white;
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   box-shadow:
@@ -243,6 +243,7 @@ nav {
     background: rgba(255, 255, 255, 0.97);
     backdrop-filter: blur(14px);
     box-shadow: var(--shadow-sm);
+    gap: 25px;
     border-radius: 0 0 var(--radius) var(--radius);
   }
 
@@ -2136,4 +2137,24 @@ h4 {
 
 .toast.error {
   background: #dc3545;
+}
+
+/* Phone button sirf mobile menu mein dikhao */
+.nav-phone-mobile {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .nav-phone-mobile {
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+    width: 100%;
+  }
+
+  .nav-phone-mobile .btn {
+    width: 100%;
+    justify-content: center;
+    color: white;
+  }
 }
