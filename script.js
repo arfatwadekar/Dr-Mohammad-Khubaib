@@ -111,6 +111,84 @@ function showVideoSkeletons(wrapper, count = 3) {
    VIDEO REVIEWS API   (with lazy / intersection-based load)
 ========================================================= */
 
+// async function loadVideoReviews() {
+//   const wrapper = document.getElementById("videoReviewWrapper");
+//   if (!wrapper) return;
+
+//   /* Show skeletons immediately so the section isn't blank */
+//   showVideoSkeletons(wrapper);
+
+//   let blogs = [];
+
+//   try {
+//     const controller = new AbortController();
+//     const timeoutId  = setTimeout(() => controller.abort(), 8000); // 8 s timeout
+
+//     const response = await fetch(
+//       "http://localhost:8080/api/Blog?pageNumber=1&pageSize=10",
+//       { signal: controller.signal }
+//     );
+
+//     clearTimeout(timeoutId);
+
+//     const data = await response.json();
+//     blogs = (data.items || data.data || []).filter((b) => b.youTubeUrl);
+//   } catch (err) {
+//     console.error("Video API Error:", err);
+//     wrapper.innerHTML = ""; // clear skeletons silently
+//     return;
+//   }
+
+//   if (!blogs.length) {
+//     wrapper.innerHTML = "";
+//     return;
+//   }
+
+//   /* Build slides — thumbnails load lazily via IntersectionObserver */
+//   wrapper.innerHTML = "";
+
+//   blogs.forEach((blog) => {
+//     const videoId = extractYoutubeId(blog.youTubeUrl);
+//     if (!videoId) return;
+
+//     const thumb = `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`; // mqdefault = smaller, faster than maxresdefault
+
+//     const slide = document.createElement("div");
+//     slide.className = "swiper-slide";
+//     slide.innerHTML = `
+//       <div
+//         class="video-card"
+//         data-video="https://www.youtube.com/embed/${videoId}"
+//         data-title="${escapeAttr(blog.title)}"
+//         data-desc="${escapeAttr(blog.description)}"
+//       >
+//         <div class="thumbnail">
+//           <img
+//             src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E"
+//             data-src="${thumb}"
+//             alt="${escapeAttr(blog.title)}"
+//             loading="lazy"
+//             width="320"
+//             height="180"
+//             decoding="async"
+//           />
+//           <div class="play-icon"><i class="ri-play-fill"></i></div>
+//         </div>
+//         <div class="video-info">
+//           <h3>${escapeHtml(blog.title)}</h3>
+//           <p>${escapeHtml(blog.description)}</p>
+//         </div>
+//       </div>`;
+
+//     wrapper.appendChild(slide);
+//   });
+
+//   /* Lazy-load images with IntersectionObserver */
+//   lazyLoadImages(wrapper.querySelectorAll("img[data-src]"));
+
+//   initVideoSwiper();
+// }
+
 async function loadVideoReviews() {
   const wrapper = document.getElementById("videoReviewWrapper");
   if (!wrapper) return;
@@ -144,14 +222,19 @@ async function loadVideoReviews() {
     return;
   }
 
-  /* Build slides — thumbnails load lazily via IntersectionObserver */
+  /* Build slides — thumbnails from uploaded imageData */
   wrapper.innerHTML = "";
 
   blogs.forEach((blog) => {
     const videoId = extractYoutubeId(blog.youTubeUrl);
     if (!videoId) return;
 
-    const thumb = `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`; // mqdefault = smaller, faster than maxresdefault
+    // 🔧 अपलोड की गई image दिखाना
+    let thumb = `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`; // fallback
+    
+    if (blog.thumbnailImage?.imageData) {
+      thumb = `data:image/png;base64,${blog.thumbnailImage.imageData}`;
+    }
 
     const slide = document.createElement("div");
     slide.className = "swiper-slide";
@@ -164,8 +247,7 @@ async function loadVideoReviews() {
       >
         <div class="thumbnail">
           <img
-            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E"
-            data-src="${thumb}"
+            src="${thumb}"
             alt="${escapeAttr(blog.title)}"
             loading="lazy"
             width="320"
@@ -182,9 +264,6 @@ async function loadVideoReviews() {
 
     wrapper.appendChild(slide);
   });
-
-  /* Lazy-load images with IntersectionObserver */
-  lazyLoadImages(wrapper.querySelectorAll("img[data-src]"));
 
   initVideoSwiper();
 }
